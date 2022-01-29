@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Day01Test {
 
-    private static final String inputFilePath = "year2015/inputDay01.txt";
+    private static final String INPUT_FILE_PATH = "year2015/inputDay01.txt";
     private static InputStream inputStream;
     private static Day01 day01;
 
     @BeforeAll
     static void setup() throws FileNotFoundException, URISyntaxException {
-        inputStream = AoCInput.getInputStream(inputFilePath);
+        inputStream = AoCInput.getInputStream(INPUT_FILE_PATH);
         day01 = new Day01(inputStream);
     }
 
