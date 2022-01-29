@@ -1,4 +1,4 @@
-package year2015.day01;
+package year2015;
 
 import helpers.AoCInput;
 
@@ -13,27 +13,25 @@ public class Day01 {
     private static final int GO_DOWN_ONE_FLOOR = -1;
     private static final int BASEMENT_NOT_VISITED = 0;
 
-    private final InputStream inputStream;
-
+    private final InputStream INPUT_STREAM;
     private int currentFloor;
     private int firstBasementVisit;
 
-    public Day01(String inputFilePath) {
-        inputStream = AoCInput.getInputStream(inputFilePath);
-        setCurrentFloor(0);
-        setFirstBasementVisit(0);
+    public Day01(InputStream inputStream) {
+        INPUT_STREAM = inputStream;
+        currentFloor = 0;
+        firstBasementVisit = 0;
     }
 
     public void santaMovingInTheBuilding() throws IOException {
         int currentStep;
         int stepsNumber = 0;
 
-        while (AoCInput.isNotEof( currentStep = inputStream.read())) {
-            setCurrentFloor( getCurrentFloor() + getStepDirection(currentStep) );
-
+        while (AoCInput.isNotEof( currentStep = INPUT_STREAM.read())) {
+            currentFloor += getStepDirection(currentStep);
             stepsNumber ++;
             if (isBasementNotVisited()) {
-                setFirstBasementVisit(stepsNumber);
+                firstBasementVisit = stepsNumber;
             }
         }
     }
@@ -41,7 +39,7 @@ public class Day01 {
     @Override
     public String toString() {
         return String.format("Day01{firstBasementVisit = %d, finalFloor = %d}",
-                getFirstBasementVisit(), getCurrentFloor());
+                firstBasementVisit, currentFloor);
     }
 
     private int getStepDirection(int currentStep) {
@@ -49,11 +47,11 @@ public class Day01 {
     }
 
     private boolean isFirstBasement() {
-        return getCurrentFloor() == FIRST_BASEMENT;
+        return currentFloor == FIRST_BASEMENT;
     }
 
     private boolean isBasementVisited() {
-        return getFirstBasementVisit() == BASEMENT_NOT_VISITED;
+        return firstBasementVisit == BASEMENT_NOT_VISITED;
     }
 
     private boolean isBasementNotVisited() {
@@ -62,21 +60,5 @@ public class Day01 {
 
     private boolean isUp(int currentStep) {
         return (char) currentStep == GO_UP;
-    }
-
-    private int getCurrentFloor() {
-        return currentFloor;
-    }
-
-    private void setCurrentFloor(int currentFloor) {
-        this.currentFloor = currentFloor;
-    }
-
-    private int getFirstBasementVisit() {
-        return firstBasementVisit;
-    }
-
-    private void setFirstBasementVisit(int firstBasementVisit) {
-        this.firstBasementVisit = firstBasementVisit;
     }
 }
