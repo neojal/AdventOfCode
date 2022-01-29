@@ -27,4 +27,6 @@ class Day02Test {
     void getTotalAreaOfWrappingPaper() throws IOException {
         assertEquals(day02.getTotalAreaOfWrappingPaper(), 1586300);
     }
+
+    //todo: part2
 }
