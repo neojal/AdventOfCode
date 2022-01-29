@@ -11,20 +11,22 @@ import java.nio.file.Paths;
 public class AoCInput {
 
     private static final int EOF = -1;
-    private final URI uri;
+    private static URI uri;
 
-    public AoCInput(String inputFilePath) throws URISyntaxException {
+    private AoCInput(String inputFilePath) throws URISyntaxException {
         URL url = AoCInput.class.getClassLoader().getResource(inputFilePath);
         assert url != null;
         uri = url.toURI();
     }
 
-    public InputStream getInputStream() throws FileNotFoundException {
+    public static InputStream getInputStream(String inputFilePath) throws FileNotFoundException, URISyntaxException {
+        new AoCInput(inputFilePath);
         File file = new File(uri);
         return new FileInputStream(file);
     }
 
-    public BufferedReader getBufferedReader() throws IOException {
+    public static BufferedReader getBufferedReader(String inputFilePath) throws IOException, URISyntaxException {
+        new AoCInput(inputFilePath);
         Path path = Paths.get(uri);
         return Files.newBufferedReader(path);
     }

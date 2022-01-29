@@ -1,50 +1,48 @@
 package year2015;
 
+import helpers.AoCData;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 public class Day02 {
 
+    public static final String SPLIT_REGEX = "x";
     private final BufferedReader BUFFERED_READER;
+    private int totalWrapper;
+    private int totalRibbon;
 
     public Day02(BufferedReader bufferedReader) {
         BUFFERED_READER = bufferedReader;
+        totalWrapper = 0;
+        totalRibbon = 0;
     }
 
-    int getTotalAreaOfWrappingPaper() throws IOException {
+    String getWrapperAndRibbon() throws IOException {
 
-        String line;
-        int totalArea = 0;
-        while ((line = BUFFERED_READER.readLine()) != null) {
+        String inputLine;
+        while ((inputLine = BUFFERED_READER.readLine()) != null) {
 
-            int[] dimensions = new int[3];
-            int boxArea = 0;
-            int smallestSide = 0;
-            int position = 0;
-            StringTokenizer st = new StringTokenizer(line, "x");
-            while (st.hasMoreTokens()) {
-                dimensions[position] = Integer.parseInt(st.nextToken());
-
-                if (position > 0) {
-                    for (int j = position - 1; j >= 0; j--) {
-                        int side = 2 * (dimensions[position] * dimensions[j]);
-                        boxArea += side;
-                        smallestSide = getSmallestSide(smallestSide, side);
-                    }
-                }
-                position++;
-            }
-            totalArea += getTotalBoxArea(boxArea, smallestSide);
+            int[] boxSides = AoCData.getSortedIntArrayFromSplit(inputLine, SPLIT_REGEX);
+            totalWrapper += getBoxWrapper(boxSides);
+            totalRibbon += getBoxRibbon(boxSides);
         }
-        return totalArea;
+        return this.toString();
     }
 
-    private int getTotalBoxArea(int boxArea, int smallestSide) {
-        return boxArea + smallestSide / 2;
+    private int getBoxWrapper(int[] boxSides) {
+        return 2 * (boxSides[0]*boxSides[1] + boxSides[0]*boxSides[2] + boxSides[1]*boxSides[2]) +
+                boxSides[0]*boxSides[1];
     }
 
-    private int getSmallestSide(int smallestSide, int side) {
-        return smallestSide == 0 ? side : Math.min(side, smallestSide);
+    private int getBoxRibbon(int[] boxSides) {
+        return 2 * (boxSides[0] + boxSides[1]) +
+                boxSides[0] * boxSides[1] * boxSides[2];
+    }
+
+    @Override
+    public String toString() {
+        return "Day02{totalWrapperArea=" + totalWrapper +
+                ", totalRibbonLength=" + totalRibbon +"}";
     }
 }

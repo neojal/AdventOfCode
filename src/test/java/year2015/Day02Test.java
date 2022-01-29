@@ -18,15 +18,12 @@ class Day02Test {
 
     @BeforeAll
     static void setup() throws IOException, URISyntaxException {
-        AoCInput aoCInput = new AoCInput(inputFilePath);
-        bufferedReader = aoCInput.getBufferedReader();
+        bufferedReader = AoCInput.getBufferedReader(inputFilePath);
         day02 = new Day02(bufferedReader);
     }
 
     @Test
     void getTotalAreaOfWrappingPaper() throws IOException {
-        assertEquals(day02.getTotalAreaOfWrappingPaper(), 1586300);
+        assertEquals(day02.getWrapperAndRibbon(), "Day02{totalWrapperArea=1586300, totalRibbonLength=3737498}");
     }
-
-    //todo: part2
 }

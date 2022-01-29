@@ -19,8 +19,7 @@ class Day01Test {
 
     @BeforeAll
     static void setup() throws FileNotFoundException, URISyntaxException {
-        AoCInput aoCInput = new AoCInput(inputFilePath);
-        inputStream = aoCInput.getInputStream();
+        inputStream = AoCInput.getInputStream(inputFilePath);
         day01 = new Day01(inputStream);
     }
 
