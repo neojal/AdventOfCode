@@ -2,21 +2,23 @@ package year2015;
 
 import helpers.AoCInput;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Day03 {
+    private final InputStream INPUT_STREAM;
 
     private static final int START_X = 0;
     private static final int START_Y = 0;
-    private final InputStream INPUT_STREAM;
 
     private final char UP = '^';
     private final char DOWN = 'v';
     private final char LEFT = '<';
     private final char RIGHT = '>';
+
     private int santaAloneHousesNumber;
     private int santaAndRobotHousesNumber;
 
@@ -26,26 +28,26 @@ public class Day03 {
 
     public void getHousesReceivingSantaAndRobot() throws IOException {
         Set<String> santaAloneHouses = new HashSet<>();
-        Position santaAlonePosition = new Position(START_X, START_Y);
-        santaAloneHouses.add(santaAlonePosition.toString());
+        Point santaAlonePoint = new Point(START_X, START_Y);
+        santaAloneHouses.add(santaAlonePoint.toString());
 
         Set<String> santaRobotHouses = new HashSet<>();
-        Position santaPosition = new Position(START_X, START_Y);
-        Position robotPosition = new Position(START_X, START_Y);
-        santaRobotHouses.add(santaPosition.toString());
-        santaRobotHouses.add(robotPosition.toString());
+        Point santaPoint = new Point(START_X, START_Y);
+        Point robotPoint = new Point(START_X, START_Y);
+        santaRobotHouses.add(santaPoint.toString());
+        santaRobotHouses.add(robotPoint.toString());
 
         int c;
         int counter = 0;
         while (AoCInput.isNotEof(c = INPUT_STREAM.read())) {
 
-            santaAloneHouses.add(getNextHouse(c, santaAlonePosition));
+            santaAloneHouses.add(getNextHouse(c, santaAlonePoint));
 
             counter++;
             if (isSantaVisiting(counter)) {
-                santaRobotHouses.add(getNextHouse(c, santaPosition));
+                santaRobotHouses.add(getNextHouse(c, santaPoint));
             } else {
-                santaRobotHouses.add(getNextHouse(c, robotPosition));
+                santaRobotHouses.add(getNextHouse(c, robotPoint));
             }
         }
         santaAloneHousesNumber = santaAloneHouses.size();
@@ -56,25 +58,22 @@ public class Day03 {
         return counter%2 != 0;
     }
 
-    private String getNextHouse(int c, Position position) {
-        int posX = position.getPosX();
-        int posY = position.getPosY();
-
+    private String getNextHouse(int c, Point point) {
         switch (c) {
             case UP:
-                position.setPosY(posY+1);
+                point.y++;
                 break;
             case DOWN:
-                position.setPosY(posY-1);
+                point.y--;
                 break;
             case LEFT:
-                position.setPosX(posX-1);
+                point.x--;
                 break;
             case RIGHT:
-                position.setPosX(posX+1);
+                point.x++;
                 break;
         }
-        return position.toString();
+        return point.toString();
     }
 
     @Override
@@ -83,36 +82,5 @@ public class Day03 {
                 "santaAloneHousesNumber=" + santaAloneHousesNumber +
                 ", santaAndRobotHousesNumber=" + santaAndRobotHousesNumber +
                 '}';
-    }
-
-    private class Position {
-        private int posX;
-        private int posY;
-
-        Position(int posX, int posY) {
-            this.posX = posX;
-            this.posY = posY;
-        }
-
-        int getPosX() {
-            return posX;
-        }
-
-        void setPosX(int posX) {
-            this.posX = posX;
-        }
-
-        int getPosY() {
-            return posY;
-        }
-
-        void setPosY(int posY) {
-            this.posY = posY;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%d-%d", posX, posY);
-        }
     }
 }
