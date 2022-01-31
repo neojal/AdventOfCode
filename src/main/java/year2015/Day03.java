@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Day03 {
@@ -33,11 +34,11 @@ public class Day03 {
     }
 
     public void performSantaAndRobotVisits() throws IOException {
-        santaAloneHouses = new HashSet<>();
+        santaAloneHouses = new LinkedHashSet<>();
         Point santaAlonePoint = new Point(START_X, START_Y);
         santaAloneHouses.add(toString(santaAlonePoint));
 
-        santaRobotHouses = new HashSet<>();
+        santaRobotHouses = new LinkedHashSet<>();
         Point santaPoint = new Point(START_X, START_Y);
         Point robotPoint = new Point(START_X, START_Y);
         santaRobotHouses.add(toString(santaPoint));
