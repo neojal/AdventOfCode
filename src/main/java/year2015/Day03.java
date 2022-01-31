@@ -3,12 +3,15 @@ package year2015;
 import helpers.AoCInput;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Day03 {
+    private static final String INPUT_FILE_PATH = "year2015/inputDay03.txt";
     private final InputStream INPUT_STREAM;
 
     private static final int START_X = 0;
@@ -22,20 +25,23 @@ public class Day03 {
     private int santaAloneHousesNumber;
     private int santaAndRobotHousesNumber;
 
-    public Day03(InputStream inputStream) {
-        INPUT_STREAM = inputStream;
+    private Set<String> santaAloneHouses;
+    private Set<String> santaRobotHouses;
+
+    public Day03() throws FileNotFoundException, URISyntaxException {
+        INPUT_STREAM = AoCInput.getInputStream(INPUT_FILE_PATH);
     }
 
-    public void getHousesReceivingSantaAndRobot() throws IOException {
-        Set<String> santaAloneHouses = new HashSet<>();
+    public void performSantaAndRobotVisits() throws IOException {
+        santaAloneHouses = new HashSet<>();
         Point santaAlonePoint = new Point(START_X, START_Y);
-        santaAloneHouses.add(santaAlonePoint.toString());
+        santaAloneHouses.add(toString(santaAlonePoint));
 
-        Set<String> santaRobotHouses = new HashSet<>();
+        santaRobotHouses = new HashSet<>();
         Point santaPoint = new Point(START_X, START_Y);
         Point robotPoint = new Point(START_X, START_Y);
-        santaRobotHouses.add(santaPoint.toString());
-        santaRobotHouses.add(robotPoint.toString());
+        santaRobotHouses.add(toString(santaPoint));
+        santaRobotHouses.add(toString(robotPoint));
 
         int c;
         int counter = 0;
@@ -73,7 +79,19 @@ public class Day03 {
                 point.x++;
                 break;
         }
-        return point.toString();
+        return toString(point);
+    }
+
+    public Set<String> getSantaAloneHouses() {
+        return santaAloneHouses;
+    }
+
+    public Set<String> getSantaRobotHouses() {
+        return santaRobotHouses;
+    }
+
+    private String toString(Point point) {
+        return String.format("%d,%d", point.x, point.y);
     }
 
     @Override
