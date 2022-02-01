@@ -19,18 +19,37 @@ public class AoCInput {
         uri = url.toURI();
     }
 
+    /**
+     *
+     * @param inputFilePath
+     * @return an {@link InputStream} to read char by char.
+     * @throws FileNotFoundException
+     * @throws URISyntaxException
+     */
     public static InputStream getInputStream(String inputFilePath) throws FileNotFoundException, URISyntaxException {
         new AoCInput(inputFilePath);
         File file = new File(uri);
         return new FileInputStream(file);
     }
 
+    /**
+     *
+     * @param inputFilePath
+     * @return a {@link BufferedReader} to read line by line.
+     * @throws IOException
+     * @throws URISyntaxException
+     */
     public static BufferedReader getBufferedReader(String inputFilePath) throws IOException, URISyntaxException {
         new AoCInput(inputFilePath);
         Path path = Paths.get(uri);
         return Files.newBufferedReader(path);
     }
 
+    /**
+     *
+     * @param c
+     * @return true if the char is not the EOF
+     */
     public static boolean isNotEof(int c) {
         return c != EOF;
     }

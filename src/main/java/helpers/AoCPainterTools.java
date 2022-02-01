@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Class with Methods to help in the creation of graphics from the AoC results.
  */
-public class AoCPaintTools {
+public class AoCPainterTools {
 
     /**
      * 

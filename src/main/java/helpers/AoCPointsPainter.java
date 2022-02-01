@@ -55,8 +55,8 @@ public class AoCPointsPainter extends JFrame {
     }
 
     private void setupDrawArea() {
-        Point minEdgePoint = AoCPaintTools.getMinEdgePoint(points);
-        Point maxEdgePoint = AoCPaintTools.getMaxEdgePoint(points);
+        Point minEdgePoint = AoCPainterTools.getMinEdgePoint(points);
+        Point maxEdgePoint = AoCPainterTools.getMaxEdgePoint(points);
 
         rectangleWidth = getRectangleWidth(minEdgePoint, maxEdgePoint);
         rectangleHeight = getRectangleHeight(minEdgePoint, maxEdgePoint);

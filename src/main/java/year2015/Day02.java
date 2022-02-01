@@ -1,6 +1,6 @@
 package year2015;
 
-import helpers.AoCTransformData;
+import helpers.AoCUseful;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class Day02 {
         String inputLine;
         while ((inputLine = BUFFERED_READER.readLine()) != null) {
 
-            int[] boxSides = AoCTransformData.getSortedIntArrayFromSplit(inputLine, SPLIT_REGEX);
+            int[] boxSides = AoCUseful.getSortedIntArrayFromSplit(inputLine, SPLIT_REGEX);
             totalWrapper += getBoxWrapper(boxSides);
             totalRibbon += getBoxRibbon(boxSides);
         }

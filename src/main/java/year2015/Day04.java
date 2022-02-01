@@ -1,6 +1,6 @@
 package year2015;
 
-import helpers.AoCTransformData;
+import helpers.AoCUseful;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -11,7 +11,7 @@ public class Day04 {
         String hash;
         do {
             String newSecret = secret.concat(Integer.toString(++n));
-            hash = AoCTransformData.getMD5HashFromSecret(newSecret);
+            hash = AoCUseful.getMD5HashFromSecret(newSecret);
         } while (!hash.startsWith(condition));
         return n;
     }

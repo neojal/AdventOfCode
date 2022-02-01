@@ -7,12 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Day03 {
     private static final String INPUT_FILE_PATH = "year2015/inputDay03.txt";
+    public static final String SPLIT_REGEX = ",";
     private final InputStream INPUT_STREAM;
 
     private static final int START_X = 0;
@@ -22,9 +22,6 @@ public class Day03 {
     private final char DOWN = 'v';
     private final char LEFT = '<';
     private final char RIGHT = '>';
-
-    private int santaAloneHousesNumber;
-    private int santaAndRobotHousesNumber;
 
     private Set<String> santaAloneHouses;
     private Set<String> santaRobotHouses;
@@ -57,8 +54,6 @@ public class Day03 {
                 santaRobotHouses.add(getNextHouse(c, robotPoint));
             }
         }
-        santaAloneHousesNumber = santaAloneHouses.size();
-        santaAndRobotHousesNumber = santaRobotHouses.size();
     }
 
     private boolean isSantaVisiting(int counter) {
@@ -92,14 +87,14 @@ public class Day03 {
     }
 
     private String toString(Point point) {
-        return String.format("%d,%d", point.x, point.y);
+        return String.format("%d%s%d", point.x, SPLIT_REGEX, point.y);
     }
 
     @Override
     public String toString() {
         return "Day03{" +
-                "santaAloneHousesNumber=" + santaAloneHousesNumber +
-                ", santaAndRobotHousesNumber=" + santaAndRobotHousesNumber +
+                "santaAloneHousesNumber=" + getSantaAloneHouses().size() +
+                ", santaAndRobotHousesNumber=" + getSantaRobotHouses().size() +
                 '}';
     }
 }
