@@ -29,7 +29,7 @@ public class AoCPointsPainter extends JFrame {
     private int pointCounter = 0;
 
 
-    public AoCPointsPainter(Builder builder) {
+    private AoCPointsPainter(Builder builder) {
         this.points = builder.points;
         this.scale = builder.scale;
         sleepTime = builder.sleepTime;
