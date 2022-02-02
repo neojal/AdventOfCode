@@ -24,16 +24,34 @@ class Day05Test {
     }
 
     @Test
-    void part1() {
+    void getNumberOfNiceStringsPart1() {
         assertEquals(day05.getNumberOfNiceStringsPart1(), 258);
     }
 
     @Test
-    void consecutiveEqualCharsMap() {
-        assertEquals(AoCUseful.
-                consecutiveEqualChars("aabccdefffg", 2).toString(), "{a=1, c=1, f=2}");
-        assertEquals(AoCUseful.
-                consecutiveEqualChars("aabccdefffg", 3).toString(), "{f=1}");
+    void getNumberOfNiceStringsPart2() {
+        assertEquals(day05.getNumberOfNiceStringsPart2(), 0);
     }
 
+    @Test
+    void consecutiveEqualCharsMap() {
+        assertEquals(day05.
+                getConsecutiveEqualCharRepetitions("aabccdefffg", 2).toString(), "{a=1, c=1, f=2}");
+        assertEquals(day05.
+                getConsecutiveEqualCharRepetitions("aabccdefffg", 3).toString(), "{f=1}");
+    }
+
+    @Test
+    void getRepeatedSubstrings()
+    {
+        assertEquals(day05.getRepeatedSubstrings("qjhvhtzxzqqjkmpbqj",2).toString(), "{qj=2}");
+        assertEquals(day05.getRepeatedSubstrings("uurcxstgmygtbstg", 3).toString(), "{stg=1}");
+        assertEquals(day05.getRepeatedSubstrings("uurcxaaaygtbstuuu", 2).toString(), "{uu=1}");
+        assertEquals(day05.getRepeatedSubstrings("aaabcdeaa", 2).toString(), "{aa=2}");
+    }
+
+    @Test
+    void containsCharSandwich() {
+        assertEquals(day05.containsCharSandwich("qjhvhtzxzqqjkmpb"), true);
+    }
 }
