@@ -11,7 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Day03 {
-    private static final String INPUT_FILE_PATH = "year2015/inputDay03.txt";
+    private static final String INPUT_FILE_PATH = "input2015/day03.txt";
     public static final String SPLIT_REGEX = ",";
     private final InputStream INPUT_STREAM;
 

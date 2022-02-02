@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Day01Test {
 
-    private static final String INPUT_FILE_PATH = "year2015/inputDay01.txt";
+    private static final String INPUT_FILE_PATH = "input2015/day01.txt";
     private static InputStream inputStream;
     private static Day01 day01;
 

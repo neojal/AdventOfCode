@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day05Test {
 
-    private static final String INPUT_FILE_PATH = "year2015/inputDay05.txt";
+    private static final String INPUT_FILE_PATH = "input2015/day05.txt";
     private static BufferedReader bufferedReader;
     private static Day05 day05;
 
