@@ -23,12 +23,12 @@ class Day06Test {
     @Test
     void part1() throws IOException {
         Day06ToggleLights day06ToggleLights = new Day06ToggleLights(day06BufferedReader);
-        assertEquals(day06ToggleLights.getTotalBrightnessNumber(), 543903);
+        assertEquals(day06ToggleLights.getTotalGridBrightness(), 543903);
     }
 
     @Test
     void part2() throws IOException {
         Day06LightsLightBrightness day06BrightnessLights = new Day06LightsLightBrightness(day06BufferedReader);
-        assertEquals(day06BrightnessLights.getTotalBrightnessNumber(), 14687245);
+        assertEquals(day06BrightnessLights.getTotalGridBrightness(), 14687245);
     }
 }

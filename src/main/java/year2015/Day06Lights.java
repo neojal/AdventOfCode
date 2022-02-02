@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * 💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡💡
+ */
 public abstract class Day06Lights {
 
-    protected static final String TOGGLE = "toggle";
     private static final String TURN = "turn";
     protected static final String ON = "on";
+    protected static final String TOGGLE = "toggle";
 
     private final BufferedReader bufferedReader;
     private final int[][] lightsGrid;
@@ -19,16 +22,15 @@ public abstract class Day06Lights {
         this.bufferedReader = bufferedReader;
     }
 
-    public int getTotalBrightnessNumber() throws IOException {
+    public int getTotalGridBrightness() throws IOException {
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             processInstructionPart1(line);
         }
-        return countLightsLit();
+        return sumLightsBrightness();
     }
-
     
-    private int countLightsLit() {
+    private int sumLightsBrightness() {
         return Arrays.asList(lightsGrid).
                 parallelStream().
                 flatMapToInt(Arrays::stream).
